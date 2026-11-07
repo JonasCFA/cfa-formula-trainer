@@ -98,7 +98,8 @@ challenges.push(
   steps:[
    ["Net profit margin","Use net income divided by revenue to see how much of each sales dollar becomes profit.","Net profit margin = $100 ÷ $1,000 = 10%."],
    ["Total asset turnover","Divide revenue by average assets to measure sales generated per dollar of assets.","Asset turnover = $1,000 ÷ $800 = 1.25×."],
-   ["Three-step DuPont ROE","Combine margin, asset turnover and the equity multiplier (average assets ÷ average equity).","Equity multiplier = $800 ÷ $400 = 2×. ROE = 10% × 1.25 × 2 = 25%. Check: $100 ÷ $400 = 25%."]
+   ["Three-step DuPont ROE","Combine margin, asset turnover and the equity multiplier (average assets ÷ average equity).","Equity multiplier = $800 ÷ $400 = 2×. ROE = 10% × 1.25 × 2 = 25%."],
+   ["Return on equity","Use net income attributable to common shareholders and average common equity for a direct check on the DuPont result.","Direct ROE = $100 ÷ $400 = 25%, matching the DuPont decomposition."]
   ]
  },
  {
@@ -175,6 +176,36 @@ challenges.push(
    ["Two-asset portfolio expected return","Weight the expected returns by their portfolio proportions.","Expected return = 0.5 × 12% + 0.5 × 6% = 9%."],
    ["Two-asset portfolio variance","Combine the weighted variances and covariance term, using decimal returns; zero correlation makes the covariance term zero.","Variance = 0.5² × 0.20² + 0.5² × 0.10² = 0.0125. Volatility = √0.0125 ≈ 11.18%."],
    ["Sharpe ratio","Divide expected excess return by portfolio volatility, both measured over the same period.","Expected Sharpe ratio = (9% − 2%) ÷ 11.18% ≈ 0.63."]
+  ]
+ },
+ {
+  chapter:"Financial Statement Analysis",title:"Liquidity at three levels",
+  question:"A company has current assets of $300, current liabilities of $100, including cash of $30, marketable securities of $20, receivables of $80, inventory of $150 and prepayments of $20. Calculate the current, quick and cash ratios. What changes as the ratios become more conservative?",
+  hint:"The current ratio uses all current assets. The quick ratio removes inventory and prepayments; the cash ratio keeps only the most immediately available assets.",
+  steps:[
+   ["Current ratio","Compare all current assets with current liabilities for broad short-term coverage.","Current ratio = $300 ÷ $100 = 3.0×."],
+   ["Quick ratio","Exclude inventory and prepayments; include cash, marketable securities and receivables.","Quick ratio = ($30 + $20 + $80) ÷ $100 = 1.30×."],
+   ["Cash ratio","Restrict the numerator to cash and marketable securities for the most conservative immediate-coverage measure.","Cash ratio = ($30 + $20) ÷ $100 = 0.50×. The ratios narrow the asset definition, so each answers a different liquidity question."]
+  ]
+ },
+ {
+  chapter:"Financial Statement Analysis",title:"From ROA to sustainable growth",
+  question:"A company has ROA of 8%, average assets of $500m, average equity of $200m, and a 40% dividend payout ratio. Assuming consistent common-income definitions, stable ROE and growth financed by retained earnings, calculate its sustainable growth rate.",
+  hint:"Convert ROA to ROE using the assets-to-equity multiplier. Then apply the retained share of earnings.",
+  steps:[
+   ["Return on assets","Use the supplied profitability measure as the starting point; check that it uses the same net-income basis as ROE.","ROA = 8%."],
+   ["ROE from ROA and financial leverage","For this identity, financial leverage is the equity multiplier: average assets divided by average equity, not debt-to-equity.","Equity multiplier = $500m ÷ $200m = 2.5×. ROE = 8% × 2.5 = 20%."],
+   ["Dividend payout ratio","The fraction not paid as dividends is retained for reinvestment under the model's assumptions.","Retention ratio = 1 − 40% = 60%."],
+   ["Sustainable growth rate","Multiply stable ROE by the retention ratio when retained earnings finance growth without new equity.","Growth = 20% × 60% = 12%."]
+  ]
+ },
+ {
+  chapter:"Portfolio Management",title:"Build a portfolio beta",
+  question:"An investor allocates 60% to asset A and 40% to asset B. Their betas versus the same market index are 1.2 and 0.5. The risk-free rate is 3% and the expected market risk premium is 5%. Find portfolio beta and its CAPM expected return.",
+  hint:"Weight the asset betas first. Then apply CAPM to the portfolio beta and the stated market risk premium.",
+  steps:[
+   ["Portfolio beta","For a fully invested portfolio, beta is the weighted sum of its asset betas against a common benchmark.","Portfolio beta = 0.60 × 1.2 + 0.40 × 0.5 = 0.92."],
+   ["CAPM cost of equity","Use the portfolio's beta, the risk-free rate and the expected market risk premium; this is a required-return estimate, not a guaranteed return.","Expected return = 3% + 0.92 × 5% = 7.6%."]
   ]
  }
 );
