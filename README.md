@@ -6,6 +6,8 @@ Open `index.html` in a browser to study locally; no installation or internet con
 
 The dashboard shows self-assessed chapter-round progress, a flexible daily goal and practice points (10 per distinct card marked known per day). Restarting a chapter resets its round progress but does not erase practice points. The optional 10-minute focus timer runs only while the page is open. Worked examples separate the prompt and solution so learners can attempt the calculation first. Suggested pacing targets 11 November 2026 and is not a spaced-repetition scheduler.
 
+Formula chain challenges cover all nine chapters with multi-step questions, an optional hint, individually revealed solution steps and links to the relevant formula cards. Each step explains why and how the formula is used. Challenge practice does not affect card progress or points; selecting a linked card opens its chapter in read mode.
+
 This is a selected formula collection, not a complete CFA curriculum or a reproduction of the linked cheat sheets. Check formula conventions against your curriculum.
 
 CFA® is a registered trademark of CFA Institute. This independent resource is not endorsed by CFA Institute.

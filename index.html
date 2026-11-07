@@ -30,6 +30,13 @@ details{padding:16px 18px;margin-top:20px}summary{cursor:pointer;font-weight:700
 <p class="small muted" id="mission-message"></p>
 <div class="timer"><span>Optional focus timer:</span><span class="timer-output" id="timer-display" role="timer">10:00</span><button class="btn" id="timer-toggle" type="button">Start 10 minutes</button><button class="btn" id="timer-reset" type="button">Reset timer</button><span id="timer-message" class="small" aria-live="polite"></span></div>
 </section>
+<section class="dashboard" aria-labelledby="case-heading">
+<h2 id="case-heading">Formula chain challenges</h2>
+<p>Start with the question, decide which formulas connect, then reveal a hint or one solution step at a time. Try the calculation before looking.</p>
+<div class="toolbar"><label for="case-select">Choose a challenge</label><select id="case-select"></select></div>
+<div id="case-content"></div>
+<p class="small muted">Challenges are practice, not exam questions or a measure of mastery. They do not change your card progress or points.</p>
+</section>
 <div class="layout">
 <aside class="panel"><h2>Chapters</h2><p class="small muted">Progress = cards marked “I knew it” in the current chapter round. This is self-assessed, not a test score.</p><div id="chapters" class="chapter-list"></div></aside>
 <section aria-label="Study area">
@@ -281,6 +288,97 @@ const relationships = [
  ["Sharpe ratio","Treynor ratio","Sharpe uses total risk; Treynor uses market beta."],
  ["Present value of an ordinary annuity","Gordon growth share value","A growing perpetuity is a growing-cash-flow counterpart to the level annuity."]
 ];
+const challenges = [
+ {
+  chapter:"Equity Investments",title:"Value a share",
+  question:"A company expects next-year EPS of $4 and a dividend of $2.40 per share. ROE is 15% and the required return is 12%. Assuming stable ROE, a constant payout and constant perpetual dividend growth funded by retained earnings, estimate intrinsic value per share using justified forward P/E.",
+  hint:"Start with what the firm pays out and retains. Which growth rate can retained earnings support? Then turn the justified forward multiple into a price.",
+  steps:[
+   ["Dividend payout ratio","Use matching next-year dividend and EPS to determine the share of earnings paid out. The rest is retained.","Payout = $2.40 ÷ $4 = 60%; retention = 1 − 60% = 40%."],
+   ["Sustainable growth rate","Use this when stable ROE and retained earnings fund growth without new equity; the resulting growth is assumed to persist here.","Growth = 40% × 15% = 6%."],
+   ["Justified forward P/E ratio","Apply the Gordon-growth forward multiple when the required return exceeds constant growth. Its denominator uses next-year earnings, not current earnings.","Justified forward P/E = 0.60 ÷ (0.12 − 0.06) = 10×."],
+   ["Gordon growth share value","Multiply the justified forward P/E by next-year EPS to get the present intrinsic value. Alternatively use next-year dividends in Gordon growth as a check.","Value = 10 × $4 = $40 per share. Check: $2.40 ÷ (0.12 − 0.06) = $40."]
+  ]
+ },
+ {
+  chapter:"Financial Statement Analysis",title:"Cash tied up in operations",
+  question:"Annual revenue is $900, cost of goods sold is $400 and purchases are $500. Average inventory is $100, average receivables $150 and average payables $100. Use 365 days and total revenue for receivables turnover. Estimate the cash conversion cycle.",
+  hint:"Convert each turnover into days, then combine the three periods. Supplier credit offsets time spent in inventory and receivables.",
+  steps:[
+   ["Inventory turnover","Use cost of goods sold and average inventory to measure inventory turns, then convert annual turns to days.","Inventory turnover = 400 ÷ 100 = 4×; inventory days = 365 ÷ 4 = 91.25."],
+   ["Receivables turnover","Use revenue and average receivables to measure collection turns, then convert them to days.","Receivables turnover = 900 ÷ 150 = 6×; receivable days = 365 ÷ 6 ≈ 60.83."],
+   ["Payables turnover","Purchases and average payables measure supplier-payment turns. Convert to days before subtracting them.","Payables turnover = 500 ÷ 100 = 5×; payable days = 365 ÷ 5 = 73."],
+   ["Cash conversion cycle","Combine the operating investment periods and subtract supplier financing.","Cash conversion cycle = 91.25 + 60.83 − 73 ≈ 79.08 days. Cash is tied up for about 79 days."]
+  ]
+ },
+ {
+  chapter:"Quantitative Methods",title:"Estimate a population mean",
+  question:"An independent random sample of 36 observations has mean return 8% and sample standard deviation 12%. The sampling assumptions for a t interval are satisfied; use the supplied critical value of 2.03. Calculate the confidence interval for the population mean.",
+  hint:"The spread of individual observations is not the same as the uncertainty of their sample mean. Calculate that uncertainty first.",
+  steps:[
+   ["Standard error of the sample mean","Use sample standard deviation and sample size to estimate the standard deviation of the sample mean.","Standard error = 12% ÷ √36 = 2%."],
+   ["Confidence interval for a mean","Multiply the standard error by the given critical value to get the margin, then add and subtract it from the sample mean.","Margin = 2.03 × 2% = 4.06 percentage points. Interval = 8% ± 4.06% = [3.94%, 12.06%]. The confidence level is determined by the stated critical value and degrees of freedom."]
+  ]
+ },
+ {
+  chapter:"Economics",title:"Output in base-year prices",
+  question:"Consumption is $1,000bn, gross investment $300bn, government purchases $250bn, exports $100bn and imports $150bn, all in current prices. The GDP deflator is 105 with base year 100. Find real GDP.",
+  hint:"First find current-price output using expenditure components. Then remove the price-level effect.",
+  steps:[
+   ["Expenditure approach to GDP","Sum expenditure on domestic final output; imports are subtracted because they are included in other spending components.","Nominal GDP = 1,000 + 300 + 250 + (100 − 150) = $1,500bn."],
+   ["Real GDP from nominal GDP","Divide the current-price value by the deflator expressed as a ratio, not by the index number itself.","Real GDP = $1,500bn ÷ (105 ÷ 100) ≈ $1,428.57bn in base-year prices."]
+  ]
+ },
+ {
+  chapter:"Corporate Issuers",title:"A project's discount rate",
+  question:"A firm has 60% equity and 40% debt by market value, no preferred stock, beta 1.2, a 3% risk-free rate and an expected market return of 9%. Pretax borrowing cost is 6% and the tax rate is 25%. Interest is fully deductible. Find WACC for a project with matching risk and capital structure.",
+  hint:"Estimate the equity cost from market risk, adjust the debt cost for tax, then weight both by their market-value shares.",
+  steps:[
+   ["CAPM cost of equity","Use CAPM to estimate the required equity return from beta and the market risk premium.","Equity cost = 3% + 1.2 × (9% − 3%) = 10.2%."],
+   ["After-tax cost of debt","Apply the tax shield only where deductible interest can be used.","After-tax debt cost = 6% × (1 − 25%) = 4.5%."],
+   ["Weighted average cost of capital","Weight the equity and after-tax debt costs by market-value proportions. Do not apply the tax adjustment twice.","WACC = 60% × 10.2% + 40% × 4.5% = 7.92%."]
+  ]
+ },
+ {
+  chapter:"Fixed Income",title:"Bond sensitivity",
+  question:"A two-year bond pays $5 in one year and $105 in two years. Annual yield is 10%, compounded annually. Estimate the percentage price change for a small 25-basis-point yield rise using modified duration. Ignore convexity.",
+  hint:"Price the cash flows, use their present values to find a time-weighted average, then convert that measure into yield sensitivity.",
+  steps:[
+   ["Fixed-rate bond price","Discount each promised cash flow at the annual yield to find the starting price.","Price = 5 ÷ 1.10 + 105 ÷ 1.10² ≈ $91.32."],
+   ["Macaulay duration","Weight each payment time by its present value divided by the total price.","Macaulay duration = [1 × (5 ÷ 1.10) + 2 × (105 ÷ 1.10²)] ÷ 91.3223 ≈ 1.9502 years."],
+   ["Modified duration","Convert Macaulay duration to sensitivity to an annual yield change; here there is one coupon period per year.","Modified duration = 1.9502 ÷ 1.10 ≈ 1.773."],
+   ["Duration price change","A yield increase is a positive decimal change; the minus sign makes the price change negative.","25 bps = 0.0025. Approximate price change = −1.773 × 0.0025 ≈ −0.443%. This is a linear estimate."]
+  ]
+ },
+ {
+  chapter:"Derivatives",title:"Price a call in one step",
+  question:"A non-dividend-paying stock is $100 now. In one period it will be $120 or $90. A European call has a $100 strike. The one-period risk-free rate is 5%; assume no arbitrage. Estimate the call's current value.",
+  hint:"Find the payoff in each future state and the risk-neutral up probability. Discount the probability-weighted payoff.",
+  steps:[
+   ["Long call payoff","At expiration the call pays the positive difference between stock and strike, or zero. The initial premium is not part of payoff.","Up payoff = max(0, 120 − 100) = $20; down payoff = max(0, 90 − 100) = $0."],
+   ["Risk-neutral up probability","Use gross stock multipliers and the one-period risk-free rate. Risk-neutral probabilities are pricing weights, not necessarily actual probabilities.","u = 1.20, d = 0.90; q = (1.05 − 0.90) ÷ (1.20 − 0.90) = 0.50."],
+   ["One-period binomial option value","Discount the risk-neutral expected payoff at the risk-free rate for the same period.","Call value = [0.50 × $20 + 0.50 × $0] ÷ 1.05 ≈ $9.52."]
+  ]
+ },
+ {
+  chapter:"Alternative Investments",title:"Value a property",
+  question:"A property's stabilized annual potential rent is $120,000. Vacancy and collection losses are $10,000, other operating income is $5,000, and operating expenses are $35,000. A comparable market-derived capitalization rate is 8%. Estimate the unlevered property value.",
+  hint:"First find operating income after vacancy and operating expenses but before financing. Capitalize that income at the market rate.",
+  steps:[
+   ["Net operating income","Calculate effective operating income and deduct operating expenses. Exclude financing costs, taxes and capital expenditure from NOI.","NOI = $120,000 − $10,000 + $5,000 − $35,000 = $80,000."],
+   ["Direct capitalization property value","Use stabilized forward NOI and a suitable positive market cap rate to estimate unlevered value.","Property value = $80,000 ÷ 0.08 = $1,000,000."]
+  ]
+ },
+ {
+  chapter:"Portfolio Management",title:"Risk-adjusted performance",
+  question:"A portfolio returned 10% while the risk-free rate was 2% over the same period. Portfolio–market covariance was 0.018 and market variance was 0.015. Both use decimal returns for that period. Calculate the Treynor ratio.",
+  hint:"The performance measure uses systematic risk rather than total volatility. Find that risk measure before comparing excess return with it.",
+  steps:[
+   ["Market beta","Divide portfolio–market covariance by market variance to estimate market sensitivity.","Beta = 0.018 ÷ 0.015 = 1.2."],
+   ["Treynor ratio","Divide the portfolio's excess return by beta; this is most useful when comparing well-diversified portfolios with positive beta.","Treynor ratio = (10% − 2%) ÷ 1.2 ≈ 6.67% per unit of beta. It differs from Sharpe, which uses standard deviation."]
+  ]
+ }
+];
 const key = "cfa-formula-trainer-v1";
 let state = {chapter:chapters[0], batch:0, mode:"cards", rounds:{}};
 let storageAvailable = true;
@@ -387,6 +485,30 @@ function renderChapters(){
   b.onclick=()=>{state.chapter=chapter;state.batch=0;revealed=false;save();render()};box.append(b);
  });
 }
+function openFormula(name){
+ const index=data.findIndex(row=>row[2]===name);
+ if(index<0)throw new Error("Missing challenge formula: "+name);
+ state.chapter=data[index][0];state.batch=Math.floor(ids(state.chapter).indexOf(index)/10);state.mode="read";revealed=false;save();render();
+ const item=el("read-card-"+index);item.scrollIntoView({block:"start"});item.focus({preventScroll:true});
+}
+function renderChallenge(){
+ const exercise=challenges[Number(el("case-select").value)],box=el("case-content");
+ box.replaceChildren();
+ box.append(text("div",exercise.chapter,"tag"),text("h3",exercise.title),text("p",exercise.question));
+ const hint=document.createElement("details");hint.append(text("summary","Need a hint?"),text("p",exercise.hint));box.append(hint);
+ exercise.steps.forEach(([name,why,calculation],index)=>{
+  const formula=data.find(row=>row[2]===name);
+  if(!formula)throw new Error("Missing challenge formula: "+name);
+  const step=document.createElement("details");
+  step.append(text("summary",`Show solution step ${index+1}`),text("h4",name),text("p",why),text("div",formula[3],"formula"),text("p",calculation),button("Open formula card: "+name,"",()=>openFormula(name)));
+  box.append(step);
+ });
+}
+challenges.forEach((exercise,i)=>{
+ const option=document.createElement("option");option.value=i;option.textContent=exercise.chapter+" · "+exercise.title;el("case-select").append(option);
+});
+el("case-select").addEventListener("change",renderChallenge);
+renderChallenge();
 function render(){
  renderChapters();
  renderMission();
