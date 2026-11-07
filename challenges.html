@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Formula Chain Challenges | CFA Level I Formula Trainer</title>
+<style>
+:root{color-scheme:light;--ink:#101c30;--muted:#36465c;--blue:#1748a8;--line:#8799ae}*{box-sizing:border-box}body{margin:0;background:#e6edf6;color:var(--ink);font:16px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}header{background:#142743;color:white;padding:28px 20px}header>div,main{max-width:900px;margin:auto}h1{font-size:clamp(1.7rem,4vw,2.4rem);margin:.1em 0}header p{color:#d8e6f4;margin:.3em 0}main{padding:24px 20px 60px}.panel{background:#fff;border:2px solid #8799ae;border-radius:14px;padding:clamp(20px,4vw,32px)}.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:20px 0}.toolbar label{font-weight:700}select,button{font:inherit}select{max-width:100%;padding:9px;border:1px solid #657992;border-radius:8px;background:#fff}.tag{color:#006154;text-transform:uppercase;letter-spacing:.06em;font-size:.78rem;font-weight:750}.formula{font-size:clamp(1.1rem,2.8vw,1.45rem);font-weight:700;white-space:pre-wrap;overflow-wrap:anywhere;background:#e5edfc;border-left:6px solid var(--blue);padding:16px;border-radius:4px;line-height:1.55}.muted{color:var(--muted)}.small{font-size:.875rem}details{border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin-top:12px}summary{cursor:pointer;font-weight:700}h4{margin-bottom:0}a{color:var(--blue)}.back{display:inline-block;margin-bottom:16px;font-weight:700}a:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #b87900;outline-offset:3px}.card-link{display:inline-block;margin-top:4px}
+</style>
+</head>
+<body>
+<header><div><h1>Formula Chain Challenges</h1><p>Connect the formulas. Solve one step at a time.</p></div></header>
+<main>
+<a class="back" href="index.html">← Back to formula trainer</a>
+<section class="panel" aria-labelledby="heading">
+<h2 id="heading">Practise applying what you know</h2>
+<p>Start with the question and decide which formulas connect. Try the calculation before revealing a hint or one solution step at a time.</p>
+<div class="toolbar"><label for="case-select">Choose a challenge</label><select id="case-select"></select></div>
+<div id="case-content" aria-live="polite"></div>
+<p class="small muted">Challenges are practice, not exam questions or a measure of mastery. They do not change your card progress or points.</p>
+</section>
+</main>
+<script src="formulas.js"></script>
+<script src="challenges.js"></script>
+<script>
+"use strict";
+const select=document.getElementById("case-select"),box=document.getElementById("case-content");
+function text(tag,value,cls){const node=document.createElement(tag);node.textContent=value;if(cls)node.className=cls;return node}
+function renderChallenge(){
+ const exercise=challenges[Number(select.value)];box.replaceChildren();
+ box.append(text("div",exercise.chapter,"tag"),text("h3",exercise.title),text("p",exercise.question));
+ const hint=document.createElement("details");hint.append(text("summary","Need a hint?"),text("p",exercise.hint));box.append(hint);
+ exercise.steps.forEach(([name,why,calculation],index)=>{
+  const formula=data.find(row=>row[2]===name);
+  if(!formula)throw new Error("Missing challenge formula: "+name);
+  const step=document.createElement("details"),link=text("a","Open formula card: "+name,"card-link");
+  link.href="index.html?formula="+encodeURIComponent(name);
+  step.append(text("summary",`Show solution step ${index+1}`),text("h4",name),text("p",why),text("div",formula[3],"formula"),text("p",calculation),link);
+  box.append(step);
+ });
+}
+challenges.forEach((exercise,i)=>{
+ const option=document.createElement("option");option.value=i;option.textContent=exercise.chapter+" · "+exercise.title;select.append(option);
+});
+select.addEventListener("change",renderChallenge);
+renderChallenge();
+</script>
+</body>
+</html>
