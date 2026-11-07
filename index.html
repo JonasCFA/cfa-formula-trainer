@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CFA Level I Formula Trainer</title>
 <style>
-:root{color-scheme:light;--ink:#17243a;--muted:#596b80;--line:#dce5ed;--blue:#245ad1;--bg:#f4f7fb;--teal:#087d70}
+:root{color-scheme:light;--ink:#101c30;--muted:#36465c;--line:#8799ae;--blue:#1748a8;--bg:#e6edf6;--teal:#006154}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}
 header{background:#142743;color:white;padding:28px 20px}header>div,main{max-width:1100px;margin:auto}h1{font-size:clamp(1.7rem,4vw,2.4rem);margin:.1em 0}header p{color:#d8e6f4;margin:.3em 0}.eyebrow{text-transform:uppercase;letter-spacing:.13em;font-weight:700;font-size:.75rem;color:#91dcd0}
 main{padding:24px 20px 60px}.notice,.panel,.card,details{background:#fff;border:1px solid var(--line);border-radius:14px}.notice{padding:14px 18px;margin-bottom:20px}.notice p{margin:.25em 0}.muted{color:var(--muted)}.small{font-size:.875rem}
@@ -14,6 +14,7 @@ button,select{font:inherit}button{cursor:pointer}button:focus-visible,select:foc
 details{padding:16px 18px;margin-top:20px}summary{cursor:pointer;font-weight:700}li{margin:.35em 0}dialog{border:0;border-radius:14px;max-width:600px;width:calc(100% - 32px);padding:26px;box-shadow:0 15px 70px #0005}dialog::backdrop{background:#17243ab3}dialog h2{margin-top:0}dialog p{white-space:pre-line}.dialog-top{display:flex;justify-content:space-between;gap:12px}.close{height:40px;min-width:40px}.source-list a{color:var(--blue)}.warning{color:#9a3d12;font-weight:600}
 @media(max-width:740px){.layout{grid-template-columns:1fr}.chapter-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px}.chapter{margin:0}.panel{padding:14px}}
 .read-item h3{margin:4px 0}.related{margin-top:16px;border-top:1px solid var(--line);padding-top:12px}.related .btn{font-size:.875rem;margin:4px 6px 4px 0}
+.dashboard{background:#fff;border:2px solid #1748a8;border-radius:14px;padding:18px;margin-bottom:20px}.dashboard h2{margin:0 0 6px}.dashboard p{margin:6px 0}.dashboard-stats{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.stat{background:#e8f0ff;border:1px solid #7e9acb;border-radius:8px;padding:8px 12px;font-weight:700}.dashboard progress{height:14px}.timer{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:12px}.timer-output{font-size:1.2rem;font-weight:750;font-variant-numeric:tabular-nums}.btn{border-color:#657992}.btn.success{background:#006154;border-color:#006154}.chapter.active{border:2px solid var(--blue);background:#dce9ff}.formula{background:#e5edfc;border-left-width:6px}.card{border:2px solid #8799ae}
 </style>
 </head>
 <body>
@@ -21,15 +22,23 @@ details{padding:16px 18px;margin-top:20px}summary{cursor:pointer;font-weight:700
 <main>
 <div class="notice"><p><strong>Start here:</strong> Work in sets of 10. Try to write the formula from memory before revealing it, then use the worked example to check your understanding.</p><p class="small muted">This is a selected, independently written collection for nine topics—not a complete CFA curriculum or a reproduction of the linked sheets. Match definitions and conventions to your exam curriculum.</p></div>
 <div id="storage-warning" class="notice warning" hidden>Your browser is blocking local storage. Progress cannot be saved between visits; allow local storage or use a different browser.</div>
+<section class="dashboard" aria-labelledby="mission-title">
+<h2 id="mission-title">Your mission: recall + apply</h2>
+<p id="mission-plan"></p>
+<div class="dashboard-stats"><span class="stat" id="mission-known"></span><span class="stat" id="mission-today"></span><span class="stat" id="mission-points"></span></div>
+<progress id="mission-progress" aria-label="Cards known in current chapter rounds"></progress>
+<p class="small muted" id="mission-message"></p>
+<div class="timer"><span>Optional focus timer:</span><span class="timer-output" id="timer-display" role="timer">10:00</span><button class="btn" id="timer-toggle" type="button">Start 10 minutes</button><button class="btn" id="timer-reset" type="button">Reset timer</button><span id="timer-message" class="small" aria-live="polite"></span></div>
+</section>
 <div class="layout">
 <aside class="panel"><h2>Chapters</h2><p class="small muted">Progress = cards marked “I knew it” in the current chapter round. This is self-assessed, not a test score.</p><div id="chapters" class="chapter-list"></div></aside>
 <section aria-label="Study area">
 <div class="toolbar"><label for="batch">Study set</label><select id="batch"></select><button class="btn" id="mode">Read all</button><button class="btn" id="reset">Restart chapter round</button></div>
 <p class="counter" id="counter" aria-live="polite"></p><div id="content"></div>
-<details><summary>How to study before the exam</summary><ul><li><strong>First pass:</strong> read a set once for meaning, then close the answer and retrieve each formula from memory. Say what each variable means.</li><li><strong>Practice:</strong> do the numerical example without looking. Mark “I knew it” only if you can recall the formula and explain when to use it.</li><li><strong>Repeat:</strong> missed cards return after the other unmastered cards in your set; mastered cards stay at the back. Finish all sets, then restart the chapter round to revisit the full stack.</li><li><strong>Space sessions:</strong> revisit missed formulas later the same day, the next day, and again before the exam. Mix topics once the basics feel familiar; take short breaks.</li><li><strong>7–11 November:</strong> cover the sets in manageable blocks, revisit weaker chapters daily, and use 11 November for mixed recall and rest. This page does not schedule reminders or measure retention over time.</li></ul></details>
+<details><summary>Study plan &amp; focus tips</summary><ul><li><strong>One small start:</strong> pick one set, put distractions away and try the optional 10-minute timer. Pause whenever you need; experiment with a short movement or water break between blocks.</li><li><strong>Recall and apply:</strong> write the formula, explain its variables and when to use it, then solve the example before revealing its solution. Mark “I knew it” only when you can do all three.</li><li><strong>Repeat:</strong> missed cards return after other unmastered cards; known cards stay at the back. Finish sets and restart a chapter round to revisit its full stack.</li><li><strong>7–11 November:</strong> use the suggested daily pace as a flexible guide, not a deadline for each card. Revisit weaker cards later the same day and on later days; mix topics and leave time for exam-style questions and rest. The app does not schedule or track spaced reviews.</li><li><strong>Focus support:</strong> short blocks and visible next steps may help reduce friction, including for some people with ADHD, but individual preferences differ. This is not medical advice or an ADHD treatment.</li></ul><p class="small">Research on learning in general: <a href="https://doi.org/10.1126/science.1152408" target="_blank" rel="noopener noreferrer">Karpicke &amp; Roediger (2008), retrieval practice</a>; <a href="https://doi.org/10.1037/0033-2909.132.3.354" target="_blank" rel="noopener noreferrer">Cepeda et al. (2006), spaced practice</a>. These studies do not establish an ADHD-specific timer duration.</p></details>
 <details class="source-list"><summary>Scope, conventions &amp; sources</summary><p>Formula names and examples are independently written. The 300Hours pages were supplied by the learner; their full contents could not be accessed here, so coverage is not guaranteed. Some ratios have alternative definitions; read each question carefully. Check the latest official curriculum for your exam.</p><ul><li><a href="https://300hours.com/cfa-level-1-fsa-cheat-sheet/" target="_blank" rel="noopener noreferrer">300Hours: Financial Statement Analysis</a></li><li><a href="https://300hours.com/cfa-level-1-quantitative-methods-cheat-sheet/" target="_blank" rel="noopener noreferrer">300Hours: Quantitative Methods</a></li><li><a href="https://300hours.com/cfa-level-1-economics-cheat-sheet/" target="_blank" rel="noopener noreferrer">300Hours: Economics</a></li><li><a href="https://300hours.com/cfa-level-1-corporate-issuers-cheat-sheet/" target="_blank" rel="noopener noreferrer">300Hours: Corporate Issuers</a></li><li><a href="https://300hours.com/cfa-level-1-equity-cheat-sheet/" target="_blank" rel="noopener noreferrer">300Hours: Equity</a></li><li><a href="https://300hours.com/cfa-level-1-fixed-income-cheat-sheet/" target="_blank" rel="noopener noreferrer">300Hours: Fixed Income</a></li><li><a href="https://300hours.com/cfa-level-1-derivatives-cheat-sheet/" target="_blank" rel="noopener noreferrer">300Hours: Derivatives</a></li><li><a href="https://300hours.com/cfa-level-1-alternative-investments-cheat-sheet/" target="_blank" rel="noopener noreferrer">300Hours: Alternative Investments</a></li><li><a href="https://analystprep.com/Ratio_Sheet.pdf" target="_blank" rel="noopener noreferrer">AnalystPrep: Level I financial ratios</a></li><li><a href="https://365financialanalyst.com/templates-and-models/quantitative-methods-formulas-cfa-level-1/" target="_blank" rel="noopener noreferrer">365 Financial Analyst: Quantitative Methods</a></li><li><a href="https://365financialanalyst.com/templates-and-models/corporate-finance-formulas-cfa-level-1/" target="_blank" rel="noopener noreferrer">365 Financial Analyst: Corporate Finance</a></li><li><a href="https://365financialanalyst.com/templates-and-models/fixed-income-investments-formulas-cfa-level-1/" target="_blank" rel="noopener noreferrer">365 Financial Analyst: Fixed Income</a></li><li><a href="https://365financialanalyst.com/templates-and-models/derivatives-formulas-cfa-level-1/" target="_blank" rel="noopener noreferrer">365 Financial Analyst: Derivatives</a></li><li><a href="https://365financialanalyst.com/templates-and-models/alternative-investments-formulas-cfa-level-1/" target="_blank" rel="noopener noreferrer">365 Financial Analyst: Alternative Investments</a></li></ul><p class="small muted">CFA® is a registered trademark of CFA Institute. This independent resource is not endorsed by CFA Institute.</p></details>
 </section></div></main>
-<dialog id="example"><div class="dialog-top"><h2 id="example-title">Worked example</h2><button class="btn close" id="close-example" aria-label="Close example">×</button></div><p id="example-text"></p></dialog>
+<dialog id="example"><div class="dialog-top"><h2 id="example-title">Worked example</h2><button class="btn close" id="close-example" aria-label="Close example">×</button></div><p>Try the calculation first:</p><p id="example-prompt"></p><button class="btn primary" id="show-solution" type="button" aria-expanded="false">Show solution</button><p id="example-text" hidden></p></dialog>
 <script>
 "use strict";
 // Each example includes its own inputs, calculation and interpretation.
@@ -71,12 +80,12 @@ const data = [
 ["Quantitative Methods","Probability","Conditional probability","P(A | B) = P(A and B) ÷ P(B)","P(B) must be positive.","Probability of A given that B has occurred.","P(A and B) = 0.12; P(B) = 0.30.\nP(A | B) = 0.12 ÷ 0.30 = 0.40 or 40%."],
 ["Quantitative Methods","Probability","Bayes’ formula","P(A | B) = P(B | A) × P(A) ÷ P(B)","P(B) is the total probability of B and must be positive.","Updates the probability of A after observing B.","P(A) = 0.20; P(B | A) = 0.80; P(B | not A) = 0.10.\nP(B) = 0.80 × 0.20 + 0.10 × 0.80 = 0.24.\nP(A | B) = 0.16 ÷ 0.24 ≈ 66.67%."],
 ["Quantitative Methods","Probability","Expected value","Σ [pᵢ × xᵢ]","The probabilities of mutually exclusive, exhaustive outcomes sum to 1.","Probability-weighted average outcome.","Returns: 20% with probability 0.4, and 5% with probability 0.6.\nExpected return = 0.4 × 20% + 0.6 × 5% = 11%."],
-["Quantitative Methods","Portfolio mathematics","Two-asset portfolio expected return","w₁E(R₁) + w₂E(R₂)","Weights sum to one for a fully invested two-asset portfolio.","Weighted average of the assets' expected returns.","Weight A = 60%, return A = 10%; weight B = 40%, return B = 5%.\nExpected portfolio return = 0.6 × 10% + 0.4 × 5% = 8%."],
-["Quantitative Methods","Portfolio mathematics","Two-asset portfolio variance","w₁²σ₁² + w₂²σ₂² + 2w₁w₂σ₁σ₂ρ₁₂","σ denotes standard deviation and ρ is correlation. Use decimal returns.","Captures both individual risks and how the assets move together.","Weights = 0.5 each; σ₁ = 20%, σ₂ = 10%, correlation = 0.\nVariance = 0.5² × 0.2² + 0.5² × 0.1² = 0.0125.\nStandard deviation = √0.0125 ≈ 11.18%."],
+["Quantitative Methods","Portfolio mathematics","Two-asset portfolio expected return","w₁E(R₁) + w₂E(R₂)","Weights sum to one for a fully invested two-asset portfolio. In general E(Rₚ) = ΣwᵢE(Rᵢ); the same weighted sum applies to realized returns.","Weighted average of the assets' expected returns.","Weight A = 60%, return A = 10%; weight B = 40%, return B = 5%.\nExpected portfolio return = 0.6 × 10% + 0.4 × 5% = 8%."],
+["Quantitative Methods","Portfolio mathematics","Two-asset portfolio variance","w₁²σ₁² + w₂²σ₂² + 2w₁w₂σ₁σ₂ρ₁₂","σ denotes standard deviation and ρ is correlation. The last term can also be written 2w₁w₂Cov(R₁,R₂). Use decimal returns.","Captures both individual risks and how the assets move together.","Weights = 0.5 each; σ₁ = 20%, σ₂ = 10%, correlation = 0.\nVariance = 0.5² × 0.2² + 0.5² × 0.1² = 0.0125.\nStandard deviation = √0.0125 ≈ 11.18%."],
 ["Quantitative Methods","Portfolio mathematics","Covariance from correlation","Cov(R₁,R₂) = ρ₁₂ × σ₁ × σ₂","Correlation is between −1 and +1; standard deviations use the same period.","Describes joint movements in return units squared.","Correlation = 0.5; standard deviations = 20% and 10%.\nCovariance = 0.5 × 0.20 × 0.10 = 0.01."],
 ["Quantitative Methods","Portfolio mathematics","Roy’s safety-first ratio","[E(Rₚ) − minimum acceptable return] ÷ σₚ","σₚ is portfolio standard deviation. For the probability interpretation, assume normally distributed returns.","Larger values imply a lower probability of falling below the threshold under normality.","Expected return = 10%; threshold = 4%; standard deviation = 12%.\nSafety-first ratio = (10% − 4%) ÷ 12% = 0.5."],
 ["Quantitative Methods","Estimation and inference","Standard error of the sample mean","s ÷ √n","s is sample standard deviation; n is sample size. Assumes independent observations.","Estimated standard deviation of the sample mean.","Sample standard deviation = 12%; sample size = 36.\nStandard error = 12% ÷ √36 = 2%."],
-["Quantitative Methods","Hypothesis testing","Test statistic for a mean","(sample mean − hypothesized mean) ÷ standard error","Choose the appropriate z or t distribution for the assumptions and available information.","How many standard errors the sample mean is from the hypothesized mean.","Sample mean = 8%; hypothesized mean = 6%; standard error = 1%.\nTest statistic = (8% − 6%) ÷ 1% = 2."],
+["Quantitative Methods","Hypothesis testing","Test statistic for a mean","(sample mean − hypothesized mean) ÷ standard error","For a one-sample t-statistic, the estimated standard error is s ÷ √n; choose the appropriate z or t distribution for the assumptions and available information.","How many standard errors the sample mean is from the hypothesized mean.","Sample mean = 8%; hypothesized mean = 6%; standard error = 1%.\nTest statistic = (8% − 6%) ÷ 1% = 2."],
 ["Quantitative Methods","Simple linear regression","Predicted value","ŷ = b₀ + b₁x","b₀ is the estimated intercept and b₁ is the estimated slope.","The model's predicted dependent variable for a given x.","Intercept = 2; slope = 3; x = 4.\nPredicted y = 2 + 3 × 4 = 14."],
 ["Economics","The firm and market structures","Accounting profit","Total revenue − explicit costs","Explicit costs are observable payments and expenses.","Profit after explicit costs, before deducting implicit opportunity costs.","Revenue = $500; explicit costs = $350.\nAccounting profit = 500 − 350 = $150."],
 ["Economics","The firm and market structures","Economic profit","Total revenue − explicit costs − implicit costs","Implicit costs include the opportunity cost of owner-supplied resources.","Profit after all opportunity costs; zero economic profit can still be a normal return.","Revenue = $500; explicit costs = $350; implicit costs = $100.\nEconomic profit = 500 − 350 − 100 = $50."],
@@ -175,6 +184,17 @@ data.push(
 ["Quantitative Methods","Hypothesis testing","Statistical power","1 − β","β is the probability of a Type II error under a specified alternative; power depends on the alternative, sample size, variability and significance level.","Probability of correctly rejecting a false null hypothesis under the specified alternative.","Type II error probability β = 20%.\nPower = 1 − 0.20 = 80%."],
 ["Portfolio Management","Risk and return","Sharpe ratio","(Portfolio return − risk-free rate) ÷ portfolio standard deviation","Use returns and standard deviation measured over the same period; annualize consistently if comparing annual ratios.","Excess return per unit of total risk; higher is generally preferable for comparable portfolios.","Portfolio return = 10%; risk-free rate = 2%; portfolio standard deviation = 16%.\nSharpe ratio = (10% − 2%) ÷ 16% = 0.50."]
 );
+data.push(
+["Quantitative Methods","Statistical measures","Population variance","σ² = Σ [pᵢ × (xᵢ − μ)²] = E[(X − μ)²]","μ = E(X); probabilities sum to one. For equally likely population observations, divide the sum of squared deviations by N. Sample variance instead uses n − 1.","Population dispersion around the mean, in squared units.","Outcomes = 2, 4, 6, each with probability 1/3; population mean = 4.\nPopulation variance = [(2 − 4)² + (4 − 4)² + (6 − 4)²] ÷ 3 = 8/3 ≈ 2.67."],
+["Quantitative Methods","Statistical measures","Standard deviation","σ = √(population variance); s = √(sample variance)","The variance must be nonnegative; match the population or sample convention to the question.","Dispersion in the same units as the original observations.","Sample variance = 4.\nSample standard deviation = √4 = 2."],
+["Quantitative Methods","Statistical measures","Z-score","z = (x − μ) ÷ σ","μ is the population mean and σ is the positive population standard deviation.","The number of standard deviations an observation lies above or below the mean.","Observation = 14; mean = 10; standard deviation = 2.\nz = (14 − 10) ÷ 2 = 2."],
+["Quantitative Methods","Estimation and inference","Confidence interval for a mean","x̄ ± critical value × standard error","Select the z or t critical value as appropriate; for an estimated standard error use s ÷ √n and the appropriate degrees of freedom. Assumptions depend on the sampling distribution.","A procedure that captures the population mean in the stated proportion of repeated samples.","Sample mean = 8%; standard error = 1%; critical value = 2.\nConfidence interval = 8% ± 2 × 1% = [6%, 10%]."],
+["Quantitative Methods","Statistical measures","Sample covariance","sₓᵧ = Σ [(xᵢ − x̄)(yᵢ − ȳ)] ÷ (n − 1)","Use paired observations, sample means and n > 1. Population covariance uses population probabilities or division by N for equally likely observations.","Measures the direction of joint variation; its magnitude depends on the units.","Paired observations: (1, 2), (2, 4), (3, 6); means are 2 and 4.\nSample covariance = [(-1)(-2) + 0 + (1)(2)] ÷ 2 = 2."],
+["Quantitative Methods","Statistical measures","Correlation","ρₓᵧ = Cov(X,Y) ÷ (σₓ × σᵧ)","Both standard deviations must be positive; use matching population or sample measures.","Standardizes covariance to a value between −1 and +1, describing linear association.","Covariance = 0.01; standard deviations = 20% and 10%.\nCorrelation = 0.01 ÷ (0.20 × 0.10) = 0.50."],
+["Portfolio Management","Risk and return","Market beta","βᵢ = Cov(Rᵢ, Rₘ) ÷ Var(Rₘ)","Rᵢ is the asset return and Rₘ is the market return; market variance must be positive and periods must match.","Measures an asset's sensitivity to market movements, or systematic risk.","Asset–market covariance = 0.018; market variance = 0.015.\nBeta = 0.018 ÷ 0.015 = 1.2."],
+["Quantitative Methods","Probability distributions","Expected value of a lognormal variable","E(X) = e^(μ + σ² ÷ 2)","If ln(X) is normally distributed with mean μ and variance σ², X is lognormally distributed. μ and σ² refer to the normal log variable, not X itself.","Computes the expected level of a lognormal random variable.","ln(X) has mean 0 and variance 0.04.\nE(X) = e^(0 + 0.04 ÷ 2) ≈ 1.0202."],
+["Portfolio Management","Risk and return","Treynor ratio","(Portfolio return − risk-free rate) ÷ portfolio beta","Use returns for the same period; beta measures market risk and must be nonzero. Comparisons are most meaningful for well-diversified portfolios with positive beta.","Excess return per unit of systematic risk; unlike Sharpe, it uses beta rather than total volatility.","Portfolio return = 10%; risk-free rate = 2%; beta = 1.2.\nTreynor ratio = (10% − 2%) ÷ 1.2 ≈ 6.67% per unit of beta."]
+);
 const chapters = [...new Set(data.map(row => row[0]))];
 const relationships = [
  ["Working capital turnover","Net working capital","Uses beginning and ending working capital."],
@@ -250,6 +270,15 @@ const relationships = [
  ["Long put payoff","Option time value","Option time value is premium less intrinsic value."],
  ["Roy’s safety-first ratio","Sharpe ratio","Both compare return in relation to risk using different thresholds."],
  ["Coefficient of variation","Sharpe ratio","Both normalize return-related quantities by risk, with different meanings."],
+ ["Sample variance","Population variance","Sample variance uses n − 1; population variance uses population probabilities."],
+ ["Population variance","Standard deviation","Standard deviation is the square root of variance."],
+ ["Sample variance","Standard deviation","The sample standard deviation is the square root of sample variance."],
+ ["Standard error of the sample mean","Confidence interval for a mean","The standard error scales the margin of error."],
+ ["Sample covariance","Correlation","Correlation standardizes covariance by both standard deviations."],
+ ["Correlation","Covariance from correlation","Rearrange correlation to recover covariance."],
+ ["Market beta","CAPM cost of equity","Beta measures market risk in CAPM."],
+ ["Market beta","Treynor ratio","Beta is the Treynor ratio denominator."],
+ ["Sharpe ratio","Treynor ratio","Sharpe uses total risk; Treynor uses market beta."],
  ["Present value of an ordinary annuity","Gordon growth share value","A growing perpetuity is a growing-cash-flow counterpart to the level annuity."]
 ];
 const key = "cfa-formula-trainer-v1";
@@ -261,6 +290,10 @@ try {
 } catch (error) { storageAvailable = false; document.getElementById("storage-warning").hidden = false; }
 let revealed = false;
 const el = id => document.getElementById(id);
+if(!state.studyDays || typeof state.studyDays!=="object" || Array.isArray(state.studyDays)) state.studyDays={};
+function localDay(date=new Date()){
+ return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,"0")}-${String(date.getDate()).padStart(2,"0")}`;
+}
 function save(){
   try { localStorage.setItem(key,JSON.stringify(state)); }
   catch(error) { storageAvailable=false; el("storage-warning").hidden=false; }
@@ -280,7 +313,54 @@ function round(chapter){
 function progress(chapter){const groups=round(chapter);return {known:groups.reduce((n,g)=>n+g.mastered.length,0),total:ids(chapter).length}}
 function text(tag, value, cls){const node=document.createElement(tag);node.textContent=value;if(cls)node.className=cls;return node}
 function button(label, cls, handler){const node=text("button",label,"btn"+(cls?" "+cls:""));node.type="button";node.addEventListener("click",handler);return node}
-function example(i){el("example-title").textContent="Worked example: "+data[i][2];el("example-text").textContent=data[i][6];el("example").showModal()}
+function example(i){
+ const [prompt,...solution]=data[i][6].split("\n");
+ el("example-title").textContent="Worked example: "+data[i][2];
+ el("example-prompt").textContent=prompt;el("example-text").textContent=solution.join("\n");
+ el("example-text").hidden=true;el("show-solution").hidden=false;el("show-solution").setAttribute("aria-expanded","false");
+ el("example").showModal();
+}
+function renderMission(){
+ const known=chapters.reduce((n,chapter)=>n+progress(chapter).known,0);
+ const today=localDay(),todayCards=Array.isArray(state.studyDays[today])?state.studyDays[today]:[];
+ const points=Object.values(state.studyDays).reduce((n,day)=>n+(Array.isArray(day)?day.length:0)*10,0);
+ const start=new Date(),examPrepEnd=new Date(2026,10,11);
+ const remaining=Math.round((Date.UTC(examPrepEnd.getFullYear(),examPrepEnd.getMonth(),examPrepEnd.getDate())-Date.UTC(start.getFullYear(),start.getMonth(),start.getDate()))/86400000)+1;
+ el("mission-known").textContent=`${known} / ${data.length} known this round`;
+ el("mission-today").textContent=`${todayCards.length} / 10 today's flexible goal`;
+ el("mission-points").textContent=`${points} practice points`;
+ el("mission-progress").max=data.length;el("mission-progress").value=known;
+ el("mission-plan").textContent=remaining>0
+  ? `${remaining} study day${remaining===1?"":"s"} through 11 November · Suggested pace: ${Math.ceil((data.length-known)/remaining)} more cards a day to finish this round.`
+  : "Exam-day review: choose a weak set, recall the formulas and practise applying them.";
+ el("mission-message").textContent=todayCards.length>=10
+  ? "Daily goal reached! Take a breather or keep going at your own pace."
+  : "One card is a start. Earn 10 points for each different card marked known today; no points are lost for a missed card. Points are practice activity, not proof of mastery.";
+}
+const timerLength=10*60*1000;
+let timerRemaining=timerLength,timerEnd=null,timerInterval=null;
+function renderTimer(){
+ const seconds=Math.ceil(timerRemaining/1000);
+ el("timer-display").textContent=`${String(Math.floor(seconds/60)).padStart(2,"0")}:${String(seconds%60).padStart(2,"0")}`;
+ el("timer-toggle").textContent=timerEnd===null?(timerRemaining===timerLength?"Start 10 minutes":"Resume timer"):"Pause timer";
+}
+function timerTick(){
+ timerRemaining=Math.max(0,timerEnd-Date.now());
+ if(timerRemaining===0){
+  clearInterval(timerInterval);timerInterval=null;timerEnd=null;
+  el("timer-message").textContent="Focus block complete. A short break is an option.";
+ }
+ renderTimer();
+}
+el("timer-toggle").addEventListener("click",()=>{
+ if(timerEnd!==null){timerTick();if(timerEnd!==null){clearInterval(timerInterval);timerInterval=null;timerEnd=null;}}
+ else{
+  if(timerRemaining===0)timerRemaining=timerLength;
+  el("timer-message").textContent="";timerEnd=Date.now()+timerRemaining;timerInterval=setInterval(timerTick,250);
+ }
+ renderTimer();
+});
+el("timer-reset").addEventListener("click",()=>{clearInterval(timerInterval);timerInterval=null;timerEnd=null;timerRemaining=timerLength;el("timer-message").textContent="";renderTimer()});
 function related(i){
  const name=data[i][2], links=relationships.filter(([a,b])=>a===name||b===name);
  if(!links.length)return null;
@@ -309,6 +389,7 @@ function renderChapters(){
 }
 function render(){
  renderChapters();
+ renderMission();
  const groups=round(state.chapter);if(!Number.isInteger(state.batch)||state.batch<0||state.batch>=groups.length)state.batch=0;
  const select=el("batch");select.replaceChildren();
  groups.forEach((g,i)=>{const o=document.createElement("option");o.value=i;o.textContent=`Set ${i+1} · ${g.mastered.length}/${g.queue.length+g.mastered.length} known`;select.append(o)});
@@ -332,7 +413,7 @@ function render(){
  const i=group.queue[0],row=data[i],card=text("article","","card");
  card.append(text("div",row[1],"tag"),text("h2",row[2]));
  if(!revealed){
-  card.append(text("p","Try to recall the formula and explain what it means before checking the answer.","muted"),button("Reveal formula","primary",()=>{revealed=true;render()}));
+  card.append(text("p","Recall the formula and when to use it. After revealing, solve the worked example before checking its solution.","muted"),button("Reveal formula","primary",()=>{revealed=true;render()}));
  }else{
   const answer=text("div","","answer");answer.append(text("div",row[3],"formula"),text("p",row[4]),text("p",row[5],"muted"));const links=related(i);if(links)answer.append(links);
   const actions=text("div","","actions");
@@ -343,7 +424,11 @@ function render(){
 }
 function mark(known){
  const g=round(state.chapter)[state.batch],i=g.queue.shift();
- if(known)g.mastered.push(i);else g.queue.push(i);
+ if(known){
+  g.mastered.push(i);
+  const day=localDay();if(!Array.isArray(state.studyDays[day]))state.studyDays[day]=[];
+  if(!state.studyDays[day].includes(i))state.studyDays[day].push(i);
+ }else g.queue.push(i);
  revealed=false;save();render();
 }
 function restart(){
@@ -353,6 +438,7 @@ function restart(){
 el("batch").addEventListener("change",e=>{state.batch=Number(e.target.value);revealed=false;save();render()});
 el("mode").addEventListener("click",()=>{state.mode=state.mode==="cards"?"read":"cards";revealed=false;render()});
 el("reset").addEventListener("click",restart);
+el("show-solution").addEventListener("click",()=>{el("example-text").hidden=false;el("show-solution").setAttribute("aria-expanded","true");el("show-solution").hidden=true});
 el("close-example").addEventListener("click",()=>el("example").close());
 el("example").addEventListener("click",event=>{if(event.target===el("example"))el("example").close()});
 render();
