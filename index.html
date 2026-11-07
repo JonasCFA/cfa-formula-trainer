@@ -101,7 +101,7 @@ const data = [
 ["Corporate Issuers","Leverage","Degree of operating leverage","Percentage change in operating income ÷ percentage change in sales","At a given output with constant unit price and variable cost, DOL = contribution margin ÷ operating income.","Measures the sensitivity of operating income to sales; fixed operating costs increase operating leverage.","Sales increase by 10% and operating income increases by 25%.\nDOL = 25% ÷ 10% = 2.5."],
 ["Corporate Issuers","Leverage","Degree of financial leverage","Percentage change in net income ÷ percentage change in operating income","For a simple capital structure without preferred dividends, DFL = EBIT ÷ (EBIT − interest).","Measures the sensitivity of net income to operating income due to financing costs.","EBIT = $100; interest = $20.\nDFL = 100 ÷ (100 − 20) = 1.25."],
 ["Corporate Issuers","Working capital","Net working capital","Current assets − current liabilities","Use balance-sheet values at the same date; some investment calculations use operating working capital instead.","A basic measure of short-term net resources.","Current assets = $250; current liabilities = $150.\nNet working capital = 250 − 150 = $100."],
-["Equity Investments","Dividend discount models","Gordon growth share value","P₀ = D₁ ÷ (r − g)","D₁ is next period's dividend; r is required return; g is constant perpetual dividend growth; r must exceed g.","Value of a share assuming dividends grow indefinitely at a constant rate.","Next dividend = $2; required return = 9%; growth = 4%.\nP₀ = 2 ÷ (0.09 − 0.04) = $40."],
+["Equity Investments","Dividend discount models","Gordon growth share value","P₀ = D₁ ÷ (r − g)","D₁ is next period's dividend; r is required return; g is constant perpetual dividend growth; r must exceed g. The general growing perpetuity formula is PV = CF₁ ÷ (r − g).","Value of a share assuming dividends grow indefinitely at a constant rate; the same formula values other perpetually growing cash flows.","Next dividend = $2; required return = 9%; growth = 4%.\nP₀ = 2 ÷ (0.09 − 0.04) = $40."],
 ["Equity Investments","Dividend discount models","Next dividend","D₁ = D₀ × (1 + g)","D₀ is the dividend just paid; g is the expected growth rate for the next period.","Projects the next dividend used in a dividend discount model.","Most recent dividend = $2; growth = 5%.\nD₁ = 2 × 1.05 = $2.10."],
 ["Equity Investments","Dividend discount models","Sustainable growth rate","Retention ratio × return on equity","Retention ratio = 1 − dividend payout ratio. Assumes stable ROE and reinvestment without new equity issuance.","Estimates the growth supported by retained earnings under these assumptions.","Dividend payout = 40%; ROE = 15%.\nGrowth = (1 − 0.40) × 15% = 9%."],
 ["Equity Investments","Dividend discount models","Dividend payout ratio","Dividend per share ÷ earnings per share","Use dividends and earnings attributable to common shareholders for the same period.","The fraction of earnings paid to shareholders as dividends.","Dividend per share = $2; EPS = $5.\nPayout ratio = 2 ÷ 5 = 40%."],
@@ -139,7 +139,10 @@ const data = [
 ["Alternative Investments","Private capital performance","Total value to paid-in capital","(Cumulative distributions + residual value) ÷ paid-in capital = DPI + RVPI","Use consistent fund-level values and fee basis. It is an investment multiple, not an annualized return.","Combines realized and remaining value per unit of capital contributed.","Distributions = $60 million; residual value = $90 million; paid-in capital = $100 million.\nTVPI = (60 + 90) ÷ 100 = 1.50×."],
 ["Alternative Investments","Fund fees","Management fee","Management fee rate × specified fee base","The base may be committed capital, invested capital, or NAV; follow the fund terms and period.","The recurring fee before any incentive fee.","Annual fee = 2%; specified fee base = $100 million.\nManagement fee = 2% × $100 million = $2 million."],
 ["Alternative Investments","Fund fees","High-water-mark incentive fee","Incentive rate × max(0, ending fee-base NAV − high-water mark)","A simplified no-flow, no-hurdle example. The contract determines the fee base, timing and treatment of management fees.","Charges an incentive fee only on gains above the prior high-water mark, under the stated terms.","High-water mark = $120 million; ending fee-base NAV = $130 million; incentive rate = 20%.\nFee = 20% × max(0, 130 − 120) = $2 million."],
-["Alternative Investments","Fund fees","Hard-hurdle incentive fee","Incentive rate × max(0, profit − hurdle amount)","A simplified hard hurdle with no catch-up; check whether profit is before or after management fees and other fund-specific terms.","The incentive fee applies only to the profit above the specified hurdle.","Profit = $15 million; hurdle amount = $8 million; incentive rate = 20%.\nFee = 20% × (15 − 8) = $1.4 million."]
+["Alternative Investments","Fund fees","Hard-hurdle incentive fee","Incentive rate × max(0, profit − hurdle amount)","A simplified hard hurdle with no catch-up; check whether profit is before or after management fees and other fund-specific terms.","The incentive fee applies only to the profit above the specified hurdle.","Profit = $15 million; hurdle amount = $8 million; incentive rate = 20%.\nFee = 20% × (15 − 8) = $1.4 million."],
+["Quantitative Methods","Time value of money","Future value with continuous compounding","FV = PV × e^(r꜀ × t)","PV is the present value; r꜀ is the continuously compounded annual rate; t is time in years and e is approximately 2.71828.","Compounds a present amount continuously over time.","PV = $1,000; continuously compounded annual rate = 5%; t = 2 years.\nFV = 1,000 × e^(0.05 × 2) ≈ $1,105.17."],
+["Quantitative Methods","Rates and returns","Continuously compounded rate","r꜀ = ln(1 + effective periodic return)","ln is the natural logarithm. The result is a continuously compounded rate for the same period; the effective return must be greater than −100%.","Converts an effective return to its equivalent continuously compounded rate for the same period.","Effective annual return = 10%.\nContinuously compounded annual rate = ln(1.10) ≈ 9.53%."],
+["Quantitative Methods","Time value of money","Present value of a growing annuity","PV = PMT₁ ÷ (r − g) × [1 − ((1 + g) ÷ (1 + r))^n]","PMT₁ is the first payment at the end of period 1; payments grow by g each period for n periods. Rates are per period; this form requires r ≠ g and r > −1.","Discounts a finite series of growing payments; when r = g, PV = n × PMT₁ ÷ (1 + r).","First annual payment = $100; growth = 5%; discount rate = 10%; n = 2 years.\nPV = 100 ÷ (0.10 − 0.05) × [1 − (1.05 ÷ 1.10)²] ≈ $177.69.\nEquivalently, 100 ÷ 1.10 + 105 ÷ 1.10² ≈ $177.69."]
 ];
 const chapters = [...new Set(data.map(row => row[0]))];
 const relationships = [
@@ -156,6 +159,11 @@ const relationships = [
  ["Basic earnings per share","Dividend payout ratio","EPS is the payout denominator."],
  ["Free cash flow to the firm","Weighted average cost of capital","WACC can discount FCFF for a matching-risk firm."],
  ["Future value","Present value","Present value reverses compounding."],
+ ["Future value","Future value with continuous compounding","The compounding convention determines the growth factor."],
+ ["Effective annual rate","Continuously compounded rate","Convert an effective return into its continuously compounded equivalent for the same period."],
+ ["Continuously compounded rate","Future value with continuous compounding","The continuous rate determines the exponential growth factor."],
+ ["Present value of an ordinary annuity","Present value of a growing annuity","A growing annuity extends the level-payment annuity."],
+ ["Present value of a growing annuity","Gordon growth share value","A growing perpetuity extends the growing annuity indefinitely when r exceeds g."],
  ["Present value","Net present value","NPV sums discounted cash flows."],
  ["Present value","Zero-coupon bond price","A zero-coupon bond discounts one principal payment."],
  ["Present value of an ordinary annuity","Fixed-rate bond price","A level coupon stream is an annuity."],
@@ -203,7 +211,13 @@ function save(){
 function ids(chapter){return data.map((row,i)=>row[0]===chapter?i:-1).filter(i=>i>=0)}
 function sets(chapter){const all=ids(chapter);return Array.from({length:Math.ceil(all.length/10)},(_,i)=>all.slice(i*10,i*10+10))}
 function round(chapter){
-  if(!state.rounds[chapter]) state.rounds[chapter]=sets(chapter).map(group=>({queue:[...group],mastered:[]}));
+  const groups=sets(chapter);
+  if(!state.rounds[chapter]) state.rounds[chapter]=groups.map(group=>({queue:[...group],mastered:[]}));
+  else groups.forEach((group,i)=>{
+    if(!state.rounds[chapter][i]) state.rounds[chapter][i]={queue:[],mastered:[]};
+    const saved=state.rounds[chapter][i];
+    group.forEach(id=>{if(!saved.queue.includes(id)&&!saved.mastered.includes(id))saved.queue.push(id)});
+  });
   return state.rounds[chapter];
 }
 function progress(chapter){const groups=round(chapter);return {known:groups.reduce((n,g)=>n+g.mastered.length,0),total:ids(chapter).length}}
