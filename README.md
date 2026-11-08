@@ -1,6 +1,6 @@
 # CFA Level I Formula Trainer
 
-An independent, English-language study companion with 153 formula flashcards, numerical examples, related formulas and chapter progress across nine topics.
+An independent, English-language study companion with 169 formula flashcards, numerical examples, related formulas and chapter progress across nine topics.
 
 Open `index.html` in a browser to study locally; keep `formulas.js`, `challenges.js`, and `challenges.html` alongside it. No installation or internet connection is needed. Progress is stored in the browser's local storage and is specific to the browser and page origin. Moving between a local file and a hosted page may result in separate progress.
 
