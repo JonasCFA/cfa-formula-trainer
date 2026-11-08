@@ -207,5 +207,25 @@ challenges.push(
    ["Portfolio beta","For a fully invested portfolio, beta is the weighted sum of its asset betas against a common benchmark.","Portfolio beta = 0.60 × 1.2 + 0.40 × 0.5 = 0.92."],
    ["CAPM cost of equity","Use the portfolio's beta, the risk-free rate and the expected market risk premium; this is a required-return estimate, not a guaranteed return.","Expected return = 3% + 0.92 × 5% = 7.6%."]
   ]
+ },
+ {
+  chapter:"Quantitative Methods",title:"Returns with borrowed capital",
+  question:"You invest $100 of equity and borrow $100 at a 5% one-period borrowing rate to buy an asset. The asset price rises from $200 to $220 and pays $10 cash income during the period. Assume the debt principal remains $100 and ignore taxes and fees. Find the asset holding-period return and your levered return on equity.",
+  hint:"First find the asset's total return including income. Apply that return to the full $200 asset value, subtract the debt financing cost, then divide the gain on equity by your initial $100.",
+  steps:[
+   ["Price return","Calculate the asset's price-only gain on the initial asset value.","Price return = ($220 − $200) ÷ $200 = 10%."],
+   ["Income return","Scale cash income by the beginning asset value; add it to price return for the asset's total holding-period return.","Income return = $10 ÷ $200 = 5%."],
+   ["Holding period return","Combine price and income components to get the unlevered asset return for the period.","Asset HPR = 10% + 5% = 15%."],
+   ["Levered return on equity","Apply the unlevered asset return to total assets and subtract the interest cost on debt. Divide the resulting equity gain by beginning equity.","Asset gain = 15% × $200 = $30; interest = 5% × $100 = $5. Equity gain = $25, so levered return = $25 ÷ $100 = 25%. Check: 15% + (100 ÷ 100)(15% − 5%) = 25%."]
+  ]
+ },
+ {
+  chapter:"Quantitative Methods",title:"Compare manager and investor returns",
+  question:"A fund starts at $100. In the first subperiod it earns 10%, then an investor contributes $110, making the fund $220. The fund then loses 10%, ending at $198. Find the time-weighted return across the two subperiods. Find the investor's money-weighted return if the $110 contribution occurred at the midpoint and terminal value is $198.",
+  hint:"The TWRR compounds the subperiod returns independently of the cash flow. The investor's MWRR treats the contribution as a timed cash flow and solves an IRR equation.",
+  steps:[
+   ["Time-weighted rate of return","Geometrically link returns in each subperiod divided at the external contribution. This isolates portfolio performance from contribution timing.","TWRR = (1 + 10%)(1 − 10%) − 1 = 0.99 − 1 = −1%."],
+   ["Internal rate of return","For MWRR, use the investor's dated flows: $100 outflow initially, $110 additional contribution at midperiod and $198 terminal value. Solve for a periodic return r satisfying the cash-flow NPV equation.","0 = −100 − 110 ÷ (1 + r) + 198 ÷ (1 + r)². Let x = 1 + r: 100x² + 110x − 198 = 0, giving x ≈ 0.96079 and r ≈ −3.92% per subperiod. TWRR is −1% for the period, while MWRR is affected by the timing and size of the added contribution."]
+  ]
  }
 );
