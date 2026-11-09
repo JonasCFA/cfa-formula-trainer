@@ -34,17 +34,18 @@ details{padding:16px 18px;margin-top:20px}summary{cursor:pointer;font-weight:700
 <div class="layout">
 <aside class="panel"><h2>Chapters</h2><p class="small muted">Progress = cards marked “I knew it” in the current chapter round. This is self-assessed, not a test score.</p><div id="chapters" class="chapter-list"></div></aside>
 <section aria-label="Study area">
-<div class="toolbar"><label for="batch">Study set</label><select id="batch"></select><button class="btn" id="mode">Read all</button><button class="btn" id="reset">Restart chapter round</button></div>
+<div class="toolbar"><label id="batch-label" for="batch">Study set</label><select id="batch"></select><button class="btn" id="mode">Read all</button><button class="btn" id="reset">Restart chapter round</button><button class="btn" id="random-mode" type="button" aria-pressed="false">Random across topics</button></div>
 <p class="counter" id="counter" aria-live="polite"></p><div id="content"></div>
 <details><summary>Study plan &amp; focus tips</summary><ul><li><strong>One small start:</strong> pick one set, put distractions away and try the optional 10-minute timer. Pause whenever you need; experiment with a short movement or water break between blocks.</li><li><strong>Recall and apply:</strong> write the formula, explain its variables and when to use it, then solve the example before revealing its solution. Mark “I knew it” only when you can do all three.</li><li><strong>Repeat:</strong> missed cards return after other unmastered cards; known cards stay at the back. Finish sets and restart a chapter round to revisit its full stack.</li><li><strong>7–11 November:</strong> use the suggested daily pace as a flexible guide, not a deadline for each card. Revisit weaker cards later the same day and on later days; mix topics and leave time for exam-style questions and rest. The app does not schedule or track spaced reviews.</li><li><strong>Focus support:</strong> short blocks and visible next steps may help reduce friction, including for some people with ADHD, but individual preferences differ. This is not medical advice or an ADHD treatment.</li></ul><p class="small">Research on learning in general: <a href="https://doi.org/10.1126/science.1152408" target="_blank" rel="noopener noreferrer">Karpicke &amp; Roediger (2008), retrieval practice</a>; <a href="https://doi.org/10.1037/0033-2909.132.3.354" target="_blank" rel="noopener noreferrer">Cepeda et al. (2006), spaced practice</a>. These studies do not establish an ADHD-specific timer duration.</p></details>
-<details class="source-list"><summary>Scope, conventions &amp; sources</summary><p>Formula names and examples are independently written. The 300Hours pages were supplied by the learner; not all source material or the full curriculum was checked, so coverage is not guaranteed. Some ratios have alternative definitions; read each question carefully. Check the latest official curriculum for your exam.</p><ul><li><a href="https://learn.300hours.com/cfa/level-1/readings/quant-quantitative-methods/types-of-financial-returns" target="_blank" rel="noopener noreferrer">300Hours: Types of Financial Returns</a></li><li><a href="https://300hours.com/cfa-level-1-fsa-cheat-sheet/" target="_blank" rel="noopener noreferrer">300Hours: Financial Statement Analysis</a></li><li><a href="https://300hours.com/cfa-level-1-quantitative-methods-cheat-sheet/" target="_blank" rel="noopener noreferrer">300Hours: Quantitative Methods</a></li><li><a href="https://300hours.com/cfa-level-1-economics-cheat-sheet/" target="_blank" rel="noopener noreferrer">300Hours: Economics</a></li><li><a href="https://300hours.com/cfa-level-1-corporate-issuers-cheat-sheet/" target="_blank" rel="noopener noreferrer">300Hours: Corporate Issuers</a></li><li><a href="https://300hours.com/cfa-level-1-equity-cheat-sheet/" target="_blank" rel="noopener noreferrer">300Hours: Equity</a></li><li><a href="https://300hours.com/cfa-level-1-fixed-income-cheat-sheet/" target="_blank" rel="noopener noreferrer">300Hours: Fixed Income</a></li><li><a href="https://300hours.com/cfa-level-1-derivatives-cheat-sheet/" target="_blank" rel="noopener noreferrer">300Hours: Derivatives</a></li><li><a href="https://300hours.com/cfa-level-1-alternative-investments-cheat-sheet/" target="_blank" rel="noopener noreferrer">300Hours: Alternative Investments</a></li><li><a href="https://analystprep.com/Ratio_Sheet.pdf" target="_blank" rel="noopener noreferrer">AnalystPrep: Level I financial ratios</a></li><li><a href="https://365financialanalyst.com/templates-and-models/quantitative-methods-formulas-cfa-level-1/" target="_blank" rel="noopener noreferrer">365 Financial Analyst: Quantitative Methods</a></li><li><a href="https://365financialanalyst.com/templates-and-models/corporate-finance-formulas-cfa-level-1/" target="_blank" rel="noopener noreferrer">365 Financial Analyst: Corporate Finance</a></li><li><a href="https://365financialanalyst.com/templates-and-models/fixed-income-investments-formulas-cfa-level-1/" target="_blank" rel="noopener noreferrer">365 Financial Analyst: Fixed Income</a></li><li><a href="https://365financialanalyst.com/templates-and-models/derivatives-formulas-cfa-level-1/" target="_blank" rel="noopener noreferrer">365 Financial Analyst: Derivatives</a></li><li><a href="https://365financialanalyst.com/templates-and-models/alternative-investments-formulas-cfa-level-1/" target="_blank" rel="noopener noreferrer">365 Financial Analyst: Alternative Investments</a></li></ul><p class="small muted">CFA® is a registered trademark of CFA Institute. This independent resource is not endorsed by CFA Institute.</p></details>
+<details class="source-list"><summary>Scope, conventions &amp; sources</summary><p>Formula names and examples are independently written. The 300Hours pages were supplied by the learner; not all source material or the full curriculum was checked, so coverage is not guaranteed. Some ratios have alternative definitions; read each question carefully. Check the latest official curriculum for your exam.</p><ul><li><a href="https://learn.300hours.com/cfa/level-1/readings/quant-quantitative-methods/types-of-financial-returns" target="_blank" rel="noopener noreferrer">300Hours: Types of Financial Returns</a></li><li><a href="https://300hours.com/cfa-level-1-fsa-cheat-sheet/" target="_blank" rel="noopener noreferrer">300Hours: Financial Statement Analysis</a></li><li><a href="https://300hours.com/cfa-level-1-quantitative-methods-cheat-sheet/" target="_blank" rel="noopener noreferrer">300Hours: Quantitative Methods</a></li><li><a href="https://300hours.com/cfa-level-1-economics-cheat-sheet/" target="_blank" rel="noopener noreferrer">300Hours: Economics</a></li><li><a href="https://300hours.com/cfa-level-1-corporate-issuers-cheat-sheet/" target="_blank" rel="noopener noreferrer">300Hours: Corporate Issuers</a></li><li><a href="https://300hours.com/cfa-level-1-equity-cheat-sheet/" target="_blank" rel="noopener noreferrer">300Hours: Equity</a></li><li><a href="https://300hours.com/cfa-level-1-fixed-income-cheat-sheet/" target="_blank" rel="noopener noreferrer">300Hours: Fixed Income</a></li><li><a href="https://300hours.com/cfa-level-1-derivatives-cheat-sheet/" target="_blank" rel="noopener noreferrer">300Hours: Derivatives</a></li><li><a href="https://300hours.com/cfa-level-1-alternative-investments-cheat-sheet/" target="_blank" rel="noopener noreferrer">300Hours: Alternative Investments</a></li><li><a href="https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/time-value-money" target="_blank" rel="noopener noreferrer">CFA Institute: Time Value of Money</a></li><li><a href="https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/portfolio-risk-return-part-2" target="_blank" rel="noopener noreferrer">CFA Institute: Portfolio Risk and Return, Part II</a></li><li><a href="https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/security-market-indexes" target="_blank" rel="noopener noreferrer">CFA Institute: Security Market Indexes</a></li><li><a href="https://analystprep.com/Ratio_Sheet.pdf" target="_blank" rel="noopener noreferrer">AnalystPrep: Level I financial ratios</a></li><li><a href="https://365financialanalyst.com/templates-and-models/quantitative-methods-formulas-cfa-level-1/" target="_blank" rel="noopener noreferrer">365 Financial Analyst: Quantitative Methods</a></li><li><a href="https://365financialanalyst.com/templates-and-models/corporate-finance-formulas-cfa-level-1/" target="_blank" rel="noopener noreferrer">365 Financial Analyst: Corporate Finance</a></li><li><a href="https://365financialanalyst.com/templates-and-models/fixed-income-investments-formulas-cfa-level-1/" target="_blank" rel="noopener noreferrer">365 Financial Analyst: Fixed Income</a></li><li><a href="https://365financialanalyst.com/templates-and-models/derivatives-formulas-cfa-level-1/" target="_blank" rel="noopener noreferrer">365 Financial Analyst: Derivatives</a></li><li><a href="https://365financialanalyst.com/templates-and-models/alternative-investments-formulas-cfa-level-1/" target="_blank" rel="noopener noreferrer">365 Financial Analyst: Alternative Investments</a></li></ul><p class="small muted">CFA® is a registered trademark of CFA Institute. This independent resource is not endorsed by CFA Institute.</p></details>
+<p class="small muted">Additional FSA references for cash-flow build-ups and coverage ratios: <a href="https://analystnotes.com/cfa-study-notes-cash-flow-ratios-and-common-size-analysis.html" target="_blank" rel="noopener noreferrer">AnalystNotes: Cash Flow Ratios</a> and <a href="https://getoncourse.ai/revision/cfa/financial-statement-analysis-level-i/analyzing-statements-of-cash-flows-ii/free-cash-flow-and-cash-flow-ratios/" target="_blank" rel="noopener noreferrer">Oncourse: Free Cash Flow and Cash Flow Ratios</a>.</p>
 </section></div></main>
 <dialog id="example"><div class="dialog-top"><h2 id="example-title">Worked example</h2><button class="btn close" id="close-example" aria-label="Close example">×</button></div><p>Try the calculation first:</p><p id="example-prompt"></p><button class="btn primary" id="show-solution" type="button" aria-expanded="false">Show solution</button><p id="example-text" hidden></p></dialog>
 <script src="formulas.js"></script>
 <script>
 "use strict";
 const key = "cfa-formula-trainer-v1";
-let state = {chapter:chapters[0], batch:0, mode:"cards", rounds:{}};
+let state = {chapter:chapters[0], batch:0, mode:"cards", rounds:{}, misses:{}, randomQueue:[]};
 let storageAvailable = true;
 try {
   const saved = JSON.parse(localStorage.getItem(key) || "null");
@@ -53,6 +54,10 @@ try {
 let revealed = false;
 const el = id => document.getElementById(id);
 if(!state.studyDays || typeof state.studyDays!=="object" || Array.isArray(state.studyDays)) state.studyDays={};
+if(!state.misses || typeof state.misses!=="object" || Array.isArray(state.misses)) state.misses={};
+if(!Array.isArray(state.randomQueue)) state.randomQueue=[];
+state.randomQueue=[...new Set(state.randomQueue.filter(i=>Number.isInteger(i)&&i>=0&&i<data.length))];
+if(state.mode==="random")buildRandomQueue(true);
 function localDay(date=new Date()){
  return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,"0")}-${String(date.getDate()).padStart(2,"0")}`;
 }
@@ -61,6 +66,15 @@ function save(){
   catch(error) { storageAvailable=false; el("storage-warning").hidden=false; }
 }
 function ids(chapter){return data.map((row,i)=>row[0]===chapter?i:-1).filter(i=>i>=0)}
+function missCount(i){return Number.isInteger(state.misses[data[i][2]])?state.misses[data[i][2]]:0}
+function buildRandomQueue(preserve=false){
+ const current=preserve?state.randomQueue.filter(i=>i<data.length):[];
+ const included=new Set(current);
+ const additions=data.map((_,i)=>i).filter(i=>!included.has(i));
+ const rank=new Map(additions.map(i=>[i,Math.random()]));
+ additions.sort((a,b)=>missCount(b)-missCount(a)||rank.get(a)-rank.get(b));
+ state.randomQueue=[...current,...additions];
+}
 function sets(chapter){const all=ids(chapter);return Array.from({length:Math.ceil(all.length/10)},(_,i)=>all.slice(i*10,i*10+10))}
 function round(chapter){
   const groups=sets(chapter);
@@ -146,7 +160,7 @@ function renderChapters(){
   b.className="chapter"+(state.chapter===chapter?" active":"");b.type="button";b.setAttribute("aria-pressed",String(state.chapter===chapter));
   b.append(text("strong",chapter),text("span",`${pct}% · ${p.known} of ${p.total} cards`));
   const bar=document.createElement("progress");bar.max=p.total;bar.value=p.known;bar.setAttribute("aria-label",chapter+" progress");b.append(bar);
-  b.onclick=()=>{state.chapter=chapter;state.batch=0;revealed=false;save();render()};box.append(b);
+  b.onclick=()=>{state.chapter=chapter;state.batch=0;state.mode="cards";revealed=false;save();render()};box.append(b);
  });
 }
 function openFormula(name){
@@ -158,6 +172,31 @@ function openFormula(name){
 function render(){
  renderChapters();
  renderMission();
+ const random=state.mode==="random";
+ el("batch-label").hidden=random;el("batch").hidden=random;el("mode").hidden=random;el("reset").hidden=random;
+ el("random-mode").textContent=random?"Exit random mode":"Random across topics";
+ el("random-mode").setAttribute("aria-pressed",String(random));
+ if(random){
+  const queue=state.randomQueue;
+  el("counter").textContent=`Random across all topics · ${queue.length} remaining · more “Not yet” answers are prioritized`;
+  const box=el("content");box.replaceChildren();
+  if(!queue.length){
+   const wrap=text("div","","card empty");wrap.append(text("h2","Random set complete"),text("p","You have seen every card once in this random set. Start another set to reshuffle, with your most-missed cards prioritized."));
+   wrap.append(button("Start another random set","primary",()=>{buildRandomQueue();revealed=false;save();render()}),button("Return to chapter practice","",()=>{state.mode="cards";revealed=false;save();render()}));
+   box.append(wrap);return;
+  }
+  const i=queue[0],row=data[i],card=text("article","","card");
+  card.append(text("div",row[0],"tag"),text("h2",row[2]),text("p",`${row[1]} · previously marked “Not yet” ${missCount(i)} time(s)`,"muted"));
+  if(!revealed){
+   card.append(text("p","Recall the formula and when to use it. After revealing, solve the worked example before checking its solution.","muted"),button("Reveal formula","primary",()=>{revealed=true;render()}));
+  }else{
+   const answer=text("div","","answer");answer.append(text("div",row[3],"formula"),text("p",row[4]),text("p",row[5],"muted"));const links=related(i);if(links)answer.append(links);
+   const actions=text("div","","actions");
+   actions.append(button("Worked example","",()=>example(i)),button("Not yet","",()=>mark(false)),button("I knew it","success",()=>mark(true)));
+   card.append(answer,actions);
+  }
+  box.append(card);return;
+ }
  const groups=round(state.chapter);if(!Number.isInteger(state.batch)||state.batch<0||state.batch>=groups.length)state.batch=0;
  const select=el("batch");select.replaceChildren();
  groups.forEach((g,i)=>{const o=document.createElement("option");o.value=i;o.textContent=`Set ${i+1} · ${g.mastered.length}/${g.queue.length+g.mastered.length} known`;select.append(o)});
@@ -191,12 +230,24 @@ function render(){
  box.append(card);
 }
 function mark(known){
+ if(state.mode==="random"){
+  const i=state.randomQueue.shift();
+  if(i===undefined)return;
+  if(known){
+   const day=localDay();if(!Array.isArray(state.studyDays[day]))state.studyDays[day]=[];
+   if(!state.studyDays[day].includes(i))state.studyDays[day].push(i);
+  }else{
+   const name=data[i][2];state.misses[name]=missCount(i)+1;
+   state.randomQueue.splice(Math.min(2,state.randomQueue.length),0,i);
+  }
+  revealed=false;save();render();return;
+ }
  const g=round(state.chapter)[state.batch],i=g.queue.shift();
  if(known){
   g.mastered.push(i);
   const day=localDay();if(!Array.isArray(state.studyDays[day]))state.studyDays[day]=[];
   if(!state.studyDays[day].includes(i))state.studyDays[day].push(i);
- }else g.queue.push(i);
+ }else {state.misses[data[i][2]]=missCount(i)+1;g.queue.push(i)}
  revealed=false;save();render();
 }
 function restart(){
@@ -205,6 +256,11 @@ function restart(){
 }
 el("batch").addEventListener("change",e=>{state.batch=Number(e.target.value);revealed=false;save();render()});
 el("mode").addEventListener("click",()=>{state.mode=state.mode==="cards"?"read":"cards";revealed=false;render()});
+el("random-mode").addEventListener("click",()=>{
+ if(state.mode==="random")state.mode="cards";
+ else {state.mode="random";buildRandomQueue();}
+ revealed=false;save();render();
+});
 el("reset").addEventListener("click",restart);
 el("show-solution").addEventListener("click",()=>{el("example-text").hidden=false;el("show-solution").setAttribute("aria-expanded","true");el("show-solution").hidden=true});
 el("close-example").addEventListener("click",()=>el("example").close());

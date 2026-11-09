@@ -227,5 +227,18 @@ challenges.push(
    ["Time-weighted rate of return","Geometrically link returns in each subperiod divided at the external contribution. This isolates portfolio performance from contribution timing.","TWRR = (1 + 10%)(1 − 10%) − 1 = 0.99 − 1 = −1%."],
    ["Internal rate of return","For MWRR, use the investor's dated flows: $100 outflow initially, $110 additional contribution at midperiod and $198 terminal value. Solve for a periodic return r satisfying the cash-flow NPV equation.","0 = −100 − 110 ÷ (1 + r) + 198 ÷ (1 + r)². Let x = 1 + r: 100x² + 110x − 198 = 0, giving x ≈ 0.96079 and r ≈ −3.92% per subperiod. TWRR is −1% for the period, while MWRR is affected by the timing and size of the added contribution."]
   ]
+ },
+ {
+  chapter:"Financial Statement Analysis",title:"Build FCFF and FCFE from the statements",
+  question:"Net income is $75. Depreciation is $20. Accounts receivable rises by $10, inventory falls by $3 and accounts payable rises by $6. Interest expense is $12 and fully deductible at a 25% tax rate; assume interest is included in CFO. Capital expenditures are $30, debt issued is $15 and debt repaid is $5. Derive CFO, FCFF and FCFE, showing the working-capital bridge and checking the direct net-income formulas.",
+  hint:"First compute the change in operating working capital. Use that to reconcile net income to CFO. Then separate the after-tax interest add-back for FCFF from the net-borrowing adjustment for FCFE.",
+  steps:[
+   ["Change in operating working capital","An increase in operating current assets uses cash; an increase in operating current liabilities provides cash. Exclude cash and financing items.","ΔOWC = Δreceivables + Δinventory − Δpayables = 10 + (−3) − 6 = $1 increase, a $1 cash use."],
+   ["CFO from net income (indirect method)","Start from net income, add back noncash depreciation and subtract the increase in operating working capital.","CFO = $75 + $20 − $1 = $94."],
+   ["Free cash flow to the firm","Add back after-tax interest because FCFF is before financing costs, then subtract fixed-capital investment.","After-tax interest = $12 × (1 − 25%) = $9. FCFF = $94 + $9 − $30 = $73."],
+   ["FCFF from net income","Cross-check directly from earnings using the same noncash, after-tax interest, investment and working-capital inputs.","FCFF = $75 + $20 + $12 × (1 − 25%) − $30 − $1 = $73, matching the CFO method."],
+   ["Free cash flow to equity","Starting from CFO, subtract capital expenditure and add net borrowing because FCFE is after debt financing flows.","Net borrowing = $15 − $5 = $10. FCFE = $94 − $30 + $10 = $74."],
+   ["FCFE from net income","Cross-check from net income without adding back interest; net borrowing captures the financing available to equity.","FCFE = $75 + $20 − $30 − $1 + ($15 − $5) = $74, matching the CFO method."]
+  ]
  }
 );
